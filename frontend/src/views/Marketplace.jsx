@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { ethers } from 'ethers';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -21,7 +21,7 @@ const Marketplace = () => {
 
     const fetchProducts = async () => {
         try {
-            const res = await axios.get('/api/products');
+        const res = await api.get('/api/products');
             setProducts(res.data);
         } catch (err) {
             console.error("Failed to fetch products", err);

@@ -16,8 +16,10 @@ import EmployeeScanner from './views/EmployeeScanner';
 import Cart from './views/Cart';
 import Checkout from './views/Checkout';
 
-// Connect to backend socket
-const socket = io('http://localhost:5000');
+// Connect to backend socket (Render en prod, localhost en dev)
+const SOCKET_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const socket = io(SOCKET_URL);
+
 
 function App() {
     const { t } = useTranslation();

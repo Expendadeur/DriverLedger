@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { ethers } from 'ethers';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -19,7 +19,7 @@ const Booking = () => {
 
     const fetchVehicles = async () => {
         try {
-            const res = await axios.get('/api/vehicles');
+        const res = await api.get('/api/vehicles');
             if (res.data.length === 0) {
                 setVehicles([
                     { id: 1, model: "Tesla Model S Plaid", plateNumber: "DRV-001X", dailyPrice: ethers.parseEther("0.15").toString(), image: "/images/vehicle_placeholder_1_1772169559889.png", speed: "322 km/h", range: "637 km" },

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Scan, QrCode, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
-import axios from 'axios';
+import api from '../services/api';
 import { useWeb3 } from '../context/Web3Context';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -18,9 +18,7 @@ const EmployeeScanner = () => {
 
     const fetchTodayReservations = async () => {
         try {
-            const res = await axios.get('/api/employee/reservations-today', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
+            const res = await api.get('/api/employee/reservations-today');
             setReservations(res.data);
         } catch (err) { console.error(err); }
     };
@@ -47,14 +45,10 @@ const EmployeeScanner = () => {
 
     const handleScan = async () => {
         setStatus('scanning');
-        // Simulated hash for demo purposes, but validated against REAL backend
         const dummyHash = "0x789...abc";
 
         try {
-            const res = await axios.post('/api/scan/validate', { data: dummyHash }, {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-
+            const res = await api.post('/api/scan/validate', { data: dummyHash });
             setScanResult(res.data);
             setStatus('success');
         } catch (err) {

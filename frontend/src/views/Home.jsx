@@ -4,7 +4,7 @@ import { ShoppingBag, Car, ShieldCheck, Zap, Globe, ArrowRight, Star, Tag, Gauge
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useCart } from '../context/CartContext';
-import axios from 'axios';
+import api from '../services/api';
 import { ethers } from 'ethers';
 
 const Home = () => {
@@ -16,10 +16,10 @@ const Home = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const prodRes = await axios.get('/api/products');
+                const prodRes = await api.get('/api/products');
                 setProducts(prodRes.data.slice(0, 3)); // Show top 3
 
-                const vehRes = await axios.get('/api/vehicles');
+                const vehRes = await api.get('/api/vehicles');
                 setVehicles(vehRes.data.slice(0, 2)); // Show top 2
             } catch (err) {
                 console.error("Home data fetch error:", err);

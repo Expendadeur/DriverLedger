@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import axios from 'axios';
+import api from '../services/api';
 
 const Web3Context = createContext();
 
@@ -53,14 +53,11 @@ export const Web3Provider = ({ children }) => {
 
     const fetchProfile = async () => {
         try {
-            const res = await axios.get('/api/auth/me', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
+            const res = await api.get('/api/auth/me');
             setUser(res.data);
             setAccount(res.data.address);
         } catch (err) {
             console.error("Failed to fetch profile", err);
-            // logout(); // Optional: only logout if token is expired
         } finally {
             setLoading(false);
         }
@@ -98,11 +95,11 @@ export const Web3Provider = ({ children }) => {
         if (!addr) return;
 
         try {
-            const nonceRes = await axios.post('/api/auth/nonce');
+            const nonceRes = await api.post('/api/auth/nonce');
             const nonce = nonceRes.data.nonce;
             const signature = await sig.signMessage(nonce);
 
-            const loginRes = await axios.post('/api/auth/login', {
+            const loginRes = await api.post('/api/auth/login', {
                 address: addr,
                 signature,
                 nonce

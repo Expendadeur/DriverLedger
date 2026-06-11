@@ -7,7 +7,7 @@ import {
     Eye, EyeOff, RefreshCw, X, Check, AlertCircle, Loader2,
     TrendingUp, DollarSign, BarChart3, UserCheck
 } from 'lucide-react';
-import axios from 'axios';
+import api from '../services/api';
 import { ethers } from 'ethers';
 import { useWeb3 } from '../context/Web3Context';
 import { CONTRACT_ADDRESSES, MARKETPLACE_ABI, BOOKING_ABI, ACCESS_CONTROL_ABI } from '../services/contracts';
@@ -50,8 +50,8 @@ const ImageUploader = ({ currentUrl, onUpload, token }) => {
         const form = new FormData();
         form.append('image', file);
         try {
-            const res = await axios.post('/api/upload/image', form, {
-                headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
+            const res = await api.post('/api/upload/image', form, {
+                headers: { 'Content-Type': 'multipart/form-data' }
             });
             setPreview(res.data.url);
             onUpload(res.data.url);
@@ -107,7 +107,7 @@ const ProductsTab = ({ token, signer }) => {
     const [txStatus, setTxStatus] = useState('');
 
     const fetchProducts = async () => {
-        const res = await axios.get('/api/products/all', { headers: { Authorization: `Bearer ${token}` } });
+        const res = await api.get('/api/products/all');
         setProducts(res.data);
     };
     useEffect(() => { fetchProducts(); }, []);
@@ -125,20 +125,20 @@ const ProductsTab = ({ token, signer }) => {
                 setTxStatus('Mise à jour on-chain...');
                 const tx = await marketplace.updateProduct(editProduct.id, form.name, form.description, priceWei, parseInt(form.stock), editProduct.active, true, form.imageUrl);
                 await tx.wait();
-                await axios.post('/api/products/sync', {
+                await api.post('/api/products/sync', {
                     id: editProduct.id, name: form.name, description: form.description,
                     price: priceWei.toString(), stock: form.stock, active: editProduct.active, imageUrl: form.imageUrl, seller: await signer.getAddress()
-                }, { headers: { Authorization: `Bearer ${token}` } });
+                });
             } else {
                 setTxStatus('Enregistrement on-chain...');
                 const total = await marketplace.getTotalProducts();
                 const newId = Number(total) + 1;
                 const tx = await marketplace.addProduct(form.name, form.description, priceWei, parseInt(form.stock), form.imageUrl);
                 await tx.wait();
-                await axios.post('/api/products/sync', {
+                await api.post('/api/products/sync', {
                     id: newId, name: form.name, description: form.description,
                     price: priceWei.toString(), stock: form.stock, active: true, imageUrl: form.imageUrl, seller: await signer.getAddress()
-                }, { headers: { Authorization: `Bearer ${token}` } });
+                });
             }
             setTxStatus('✅ Succès!');
             setShowModal(false);
@@ -156,9 +156,9 @@ const ProductsTab = ({ token, signer }) => {
             const marketplace = new ethers.Contract(CONTRACT_ADDRESSES.marketplace, MARKETPLACE_ABI, signer);
             const tx = await marketplace.setProductStatus(p.id, !p.active, true);
             await tx.wait();
-            await axios.post('/api/products/sync', {
+            await api.post('/api/products/sync', {
                 id: p.id, name: p.name, description: p.description, price: p.price, stock: p.stock, active: !p.active, imageUrl: p.imageUrl, seller: p.seller
-            }, { headers: { Authorization: `Bearer ${token}` } });
+            });
             fetchProducts();
         } catch (err) { console.error(err); }
     };
@@ -236,7 +236,7 @@ const VehiclesTab = ({ token, signer }) => {
     const [txStatus, setTxStatus] = useState('');
 
     const fetchVehicles = async () => {
-        const res = await axios.get('/api/vehicles/all', { headers: { Authorization: `Bearer ${token}` } });
+        const res = await api.get('/api/vehicles/all');
         setVehicles(res.data);
     };
     useEffect(() => { fetchVehicles(); }, []);
@@ -254,20 +254,20 @@ const VehiclesTab = ({ token, signer }) => {
                 setTxStatus('Mise à jour on-chain...');
                 const tx = await booking.updateVehicle(editVehicle.id, form.model, form.plateNumber, priceWei, editVehicle.available, form.vehicleType, form.imageUrl);
                 await tx.wait();
-                await axios.post('/api/vehicles/sync', {
+                await api.post('/api/vehicles/sync', {
                     id: editVehicle.id, model: form.model, plateNumber: form.plateNumber,
                     dailyPrice: priceWei.toString(), available: editVehicle.available, vehicleType: form.vehicleType, imageUrl: form.imageUrl
-                }, { headers: { Authorization: `Bearer ${token}` } });
+                });
             } else {
                 setTxStatus('Enregistrement on-chain...');
                 const total = await booking.getTotalVehicles();
                 const newId = Number(total) + 1;
                 const tx = await booking.addVehicle(form.model, form.plateNumber, priceWei, form.vehicleType, form.imageUrl);
                 await tx.wait();
-                await axios.post('/api/vehicles/sync', {
+                await api.post('/api/vehicles/sync', {
                     id: newId, model: form.model, plateNumber: form.plateNumber,
                     dailyPrice: priceWei.toString(), available: true, vehicleType: form.vehicleType, imageUrl: form.imageUrl
-                }, { headers: { Authorization: `Bearer ${token}` } });
+                });
             }
             setTxStatus('✅ Succès!');
             setShowModal(false);
@@ -283,10 +283,10 @@ const VehiclesTab = ({ token, signer }) => {
             const booking = new ethers.Contract(CONTRACT_ADDRESSES.booking, BOOKING_ABI, signer);
             const tx = await booking.updateVehicle(v.id, v.model, v.plateNumber, v.dailyPrice, !v.available, v.vehicleType || 'car', v.imageUrl || '');
             await tx.wait();
-            await axios.post('/api/vehicles/sync', {
+            await api.post('/api/vehicles/sync', {
                 id: v.id, model: v.model, plateNumber: v.plateNumber,
                 dailyPrice: v.dailyPrice, available: !v.available, vehicleType: v.vehicleType, imageUrl: v.imageUrl
-            }, { headers: { Authorization: `Bearer ${token}` } });
+            });
             fetchVehicles();
         } catch (err) { console.error(err); }
     };
@@ -365,13 +365,13 @@ const VehiclesTab = ({ token, signer }) => {
 const UsersTab = ({ token, signer }) => {
     const [users, setUsers] = useState([]);
     const fetchUsers = async () => {
-        const res = await axios.get('/api/admin/users', { headers: { Authorization: `Bearer ${token}` } });
+        const res = await api.get('/api/admin/users');
         setUsers(res.data);
     };
     useEffect(() => { fetchUsers(); }, []);
 
     const toggleDeactivate = async (u) => {
-        await axios.patch(`/api/admin/user/${u.address}/deactivate`, { deactivated: !u.isDeactivated }, { headers: { Authorization: `Bearer ${token}` } });
+        await api.patch(`/api/admin/user/${u.address}/deactivate`, { deactivated: !u.isDeactivated });
         fetchUsers();
     };
 
@@ -386,9 +386,9 @@ const UsersTab = ({ token, signer }) => {
                 const tx = await ac.addEmployee(u.address);
                 await tx.wait();
             }
-            await axios.patch(`/api/admin/user/${u.address}/role`, {
+            await api.patch(`/api/admin/user/${u.address}/role`, {
                 role: u.role === 'EMPLOYEE' ? 'CLIENT' : 'EMPLOYEE'
-            }, { headers: { Authorization: `Bearer ${token}` } });
+            });
             fetchUsers();
         } catch (err) { console.error(err); }
     };
@@ -434,7 +434,7 @@ const UsersTab = ({ token, signer }) => {
 const OrdersTab = ({ token }) => {
     const [orders, setOrders] = useState([]);
     const fetchOrders = async () => {
-        const res = await axios.get('/api/admin/orders', { headers: { Authorization: `Bearer ${token}` } });
+        const res = await api.get('/api/admin/orders');
         setOrders(res.data);
     };
     useEffect(() => { fetchOrders(); }, []);
@@ -476,7 +476,7 @@ const AdminDashboard = () => {
 
     const fetchStats = async () => {
         try {
-            const res = await axios.get('/api/admin/stats', { headers: { Authorization: `Bearer ${token}` } });
+            const res = await api.get('/api/admin/stats');
             setStats(res.data);
         } catch (err) { console.error("Stats error:", err); }
     };

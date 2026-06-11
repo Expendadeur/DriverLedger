@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { useWeb3 } from '../context/Web3Context';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -21,29 +21,26 @@ const Dashboard = () => {
 
     const fetchOrders = async () => {
         try {
-            const res = await axios.get('/api/user/orders', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
+            const res = await api.get('/api/user/orders');
             setOrders(res.data);
         } catch (err) { console.error(err); }
     };
 
     const fetchReservations = async () => {
         try {
-            const res = await axios.get('/api/user/reservations', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
+            const res = await api.get('/api/user/reservations');
             setReservations(res.data);
         } catch (err) { console.error(err); }
     };
 
     const downloadInvoice = async (id) => {
-        window.open(`/api/files/invoice/${id}`, '_blank');
+        const API_URL = import.meta.env.VITE_API_URL || '';
+        window.open(`${API_URL}/api/files/invoice/${id}`, '_blank');
     };
 
     const showQR = async (txHash) => {
         try {
-            const res = await axios.get(`/api/files/qr?data=${txHash}`);
+            const res = await api.get(`/api/files/qr?data=${txHash}`);
             setActiveQr(res.data.qr);
         } catch (err) { console.error(err); }
     };

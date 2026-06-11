@@ -6,6 +6,7 @@ export default defineConfig({
     server: {
         allowedHosts: true,
         proxy: {
+            // Proxy uniquement en développement local
             '/api': 'http://localhost:5000'
         }
     }
