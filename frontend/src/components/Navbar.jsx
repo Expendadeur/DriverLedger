@@ -14,14 +14,14 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <nav className="fixed w-full z-50 px-2 sm:px-6 py-4 sm:py-8">
-            <div className="max-w-7xl mx-auto glass-morphism rounded-3xl px-4 sm:px-8 py-3 sm:py-5 flex items-center justify-between border border-white/40 shadow-2xl relative">
-                <div className="flex items-center space-x-4 lg:space-x-12">
-                    <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group text-decoration-none">
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:rotate-12 transition-all duration-500">
-                            <Zap className="text-white fill-current" size={20} />
+        <nav className="fixed w-full z-50 px-2 sm:px-6 py-2 sm:py-8">
+            <div className="max-w-7xl mx-auto glass-morphism rounded-2xl sm:rounded-3xl px-3 sm:px-8 py-2 sm:py-5 flex items-center justify-between border border-white/40 shadow-2xl relative">
+                <div className="flex items-center space-x-2 lg:space-x-12">
+                    <Link to="/" className="flex items-center space-x-2 group text-decoration-none">
+                        <div className="w-8 h-8 sm:w-12 sm:h-12 bg-blue-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:rotate-12 transition-all duration-500 shrink-0">
+                            <Zap className="text-white fill-current" size={16} />
                         </div>
-                        <span className="text-xl sm:text-2xl font-black tracking-tighter text-slate-800">Drive<span className="text-blue-600 hidden xs:inline">Ledger</span></span>
+                        <span className="text-lg sm:text-2xl font-black tracking-tighter text-slate-800 hidden md:block">Drive<span className="text-blue-600">Ledger</span></span>
                     </Link>
 
                     <div className="hidden lg:flex items-center space-x-8">
@@ -41,9 +41,11 @@ const Navbar = () => {
                 </div>
 
                 <div className="flex items-center space-x-2 sm:space-x-4 lg:space-x-6">
-                    <LanguageSelector />
+                    <div className="hidden md:block">
+                        <LanguageSelector />
+                    </div>
 
-                    <Link to="/cart" className="relative px-3 sm:px-5 py-2 sm:py-3 bg-slate-100 text-slate-600 rounded-xl sm:rounded-2xl hover:bg-blue-50 hover:text-blue-600 transition-all group flex items-center space-x-2">
+                    <Link to="/cart" className="relative p-2 sm:px-5 sm:py-3 bg-slate-100 text-slate-600 rounded-xl sm:rounded-2xl hover:bg-blue-50 hover:text-blue-600 transition-all group flex items-center space-x-2">
                         <ShoppingCart size={18} className="sm:w-5 sm:h-5" />
                         <span className="font-bold hidden sm:block text-sm uppercase tracking-wider">{t('common.cart')}</span>
                         {getItemsCount() > 0 && (
@@ -70,14 +72,14 @@ const Navbar = () => {
                     ) : (
                         <button
                             onClick={login}
-                            className="bg-blue-600 text-white px-4 sm:px-8 py-2 sm:py-4 rounded-xl sm:rounded-2xl font-bold flex items-center space-x-2 hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/25 active:scale-95"
+                            className="bg-blue-600 text-white p-2 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl font-bold flex items-center space-x-2 hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/25 active:scale-95 shrink-0"
                         >
                             <User size={16} className="sm:w-[18px] sm:h-[18px]" />
-                            <span className="hidden sm:inline text-xs sm:text-base">{t('common.connectWallet')}</span>
+                            <span className="hidden sm:inline text-xs sm:text-base whitespace-nowrap">{t('common.connectWallet')}</span>
                         </button>
                     )}
 
-                    <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden p-2 sm:p-3 bg-white border border-slate-100 rounded-xl sm:rounded-2xl text-slate-600 hover:bg-slate-50 transition-all">
+                    <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden p-2 sm:p-3 bg-white border border-slate-100 rounded-xl sm:rounded-2xl text-slate-600 hover:bg-slate-50 transition-all shrink-0">
                         {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
                     </button>
                 </div>
