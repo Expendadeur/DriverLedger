@@ -146,10 +146,36 @@ app.post('/api/auth/login', async (req, res) => {
 });
 
 // ────────────────────── IMAGE UPLOAD ──────────────────────
-app.post('/api/upload/image', authenticateToken, upload.single('image'), (req, res) => {
+app.post('/api/upload/image', authenticateToken, upload.single('image'), async (req, res) => {
     if (!req.file) return res.status(400).json({ error: "No file uploaded" });
-    const url = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-    res.json({ url });
+    try {
+        // Lire le fichier local en Base64
+        const fileData = fs.readFileSync(req.file.path, { encoding: 'base64' });
+        
+        // Préparer les données pour ImgBB
+        const params = new URLSearchParams();
+        params.append('key', 'c0bc066765c397ce2205a198120f05f5');
+        params.append('image', fileData);
+
+        // Envoyer à ImgBB
+        const response = await fetch('https://api.imgbb.com/1/upload', {
+            method: 'POST',
+            body: params
+        });
+        
+        const json = await response.json();
+        
+        // Supprimer le fichier temporaire local
+        fs.unlinkSync(req.file.path);
+
+        if (json.success) {
+            res.json({ url: json.data.url });
+        } else {
+            res.status(500).json({ error: "ImgBB upload failed: " + JSON.stringify(json) });
+        }
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 // ────────────────────── PRODUCT ROUTES ──────────────────────
