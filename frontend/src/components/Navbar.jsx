@@ -59,11 +59,11 @@ const Navbar = () => {
                         )}
                     </Link>
 
-                    {account ? (
+                    {user ? (
                         <div className="flex items-center space-x-2 sm:space-x-4">
                             <div className="text-right hidden md:block">
                                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{user?.role || "CLIENT"}</p>
-                                <p className="text-sm font-bold text-slate-800">{account.slice(0, 6)}...{account.slice(-4)}</p>
+                                <p className="text-sm font-bold text-slate-800">{account?.slice(0, 6)}...{account?.slice(-4)}</p>
                             </div>
                             <button onClick={logout} className="p-2 sm:p-3 bg-slate-100 text-slate-500 rounded-xl sm:rounded-2xl hover:bg-red-50 hover:text-red-500 transition-all">
                                 <LogOut size={18} className="sm:w-5 sm:h-5" />
