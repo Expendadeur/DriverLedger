@@ -1,17 +1,17 @@
 import { ethers } from "ethers";
 
 async function main() {
-    const RPC_URL = "http://127.0.0.1:8545";
-    const ACCESS_CONTROL_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+    const RPC_URL = "https://ethereum-sepolia.core.chainstack.com/91bdf46e33094e4e848bb12abca704af";
+    const ACCESS_CONTROL_ADDRESS = "0x7F15142B76CbC47247F65aAF25f5Ba17B6555284";
 
     // Account #0 Private Key (Default Hardhat Admin)
-    const ADMIN_PRIVATE_KEY = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
+    const ADMIN_PRIVATE_KEY = "1d46fc1133eb7e7156e80a2684aaeee8dfb4d27d27f8b2802f57bd881eacab57";
 
     const provider = new ethers.JsonRpcProvider(RPC_URL);
     const wallet = new ethers.Wallet(ADMIN_PRIVATE_KEY, provider);
 
     // --- METTEZ VOTRE ADRESSE METAMASK ICI ---
-    const targetAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
+    const targetAddress = "0x1c334667841443D4E80B5964bfc03319844ead76";
 
     // Minimal ABI for grantRole and ADMIN_ROLE constant
     const abi = [

@@ -43,7 +43,7 @@ export const ACCESS_CONTROL_ABI = [
 ];
 
 export const CONTRACT_ADDRESSES = {
-    marketplace: "0xBbdfe9B2C3188c4fe12BE4E4f6d43ebFD9b74F53",
-    booking: "0xbBe6db13afc5b0E23eB1344A2C7Cb664e9a34Dbf",
-    accessControl: "0x7F15142B76CbC47247F65aAF25f5Ba17B6555284"
+    marketplace: "0xd9cC06DF8a6b71edD9b2C8BD9f97f63633052929",
+    booking: "0xeD5F70b25b16C32111edf3FD1424418E8c709033",
+    accessControl: "0x0C26EF26368fF4922aC9293c9c5BCEBbc9f0149E"
 };
