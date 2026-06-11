@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  address       String   @unique
+  role          String   @default("CLIENT") // ADMIN, EMPLOYEE, CLIENT
+  isDeactivated Boolean  @default(false)
+  fcmToken      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  orders        Order[]
+  reservations  Reservation[]
+}
+
+model Product {
+  id           Int      @id
+  name         String
+  description  String
+  price        String   // String to store large numbers (wei)
+  stock        Int
+  seller       String
+  active       Boolean  @default(true)
+  imageUrl     String?
+  updatedAt    DateTime @updatedAt
+  
+  orders       Order[]
+}
+
+model Vehicle {
+  id           Int      @id
+  model        String
+  plateNumber  String
+  dailyPrice   String
+  vehicleType  String   @default("car")
+  available    Boolean  @default(true)
+  imageUrl     String?
+  updatedAt    DateTime @updatedAt
+  
+  reservations Reservation[]
+}
+
+model Order {
+  id          Int      @id
+  productId   Int
+  buyer       String
+  amount      String
+  status      String   @default("PAID")
+  timestamp   DateTime @default(now())
+  txHash      String   @unique
+  
+  user        User     @relation(fields: [buyer], references: [address])
+  product     Product  @relation(fields: [productId], references: [id])
+}
+
+model Reservation {
+  id          Int      @id
+  vehicleId   Int
+  client      String
+  startTime   DateTime @default(now())
+  endTime     DateTime @default(now())
+  amount      String   @default("0")
+  totalPaid   String   @default("0")
+  status      String   @default("CONFIRMED")
+  txHash      String   @unique
+  
+  user        User     @relation(fields: [client], references: [address])
+  vehicle     Vehicle  @relation(fields: [vehicleId], references: [id])
+}

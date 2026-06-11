@@ -1,0 +1,19 @@
+-- AlterTable
+ALTER TABLE "Order" ALTER COLUMN "timestamp" SET DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "Product" ADD COLUMN     "imageUrl" TEXT;
+
+-- AlterTable
+ALTER TABLE "Reservation" ADD COLUMN     "amount" TEXT NOT NULL DEFAULT '0',
+ALTER COLUMN "startTime" SET DEFAULT CURRENT_TIMESTAMP,
+ALTER COLUMN "endTime" SET DEFAULT CURRENT_TIMESTAMP,
+ALTER COLUMN "totalPaid" SET DEFAULT '0';
+
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "fcmToken" TEXT,
+ADD COLUMN     "isDeactivated" BOOLEAN NOT NULL DEFAULT false;
+
+-- AlterTable
+ALTER TABLE "Vehicle" ADD COLUMN     "imageUrl" TEXT,
+ADD COLUMN     "vehicleType" TEXT NOT NULL DEFAULT 'car';

@@ -1,0 +1,19 @@
+# Bloque tous les dossiers node_modules du projet (racine, backend, frontend, blockchain)
+**/node_modules/
+node_modules/
+
+# Masque les fichiers d'environnement secrets contenant vos clés privées
+.env
+.env.local
+**/.env
+
+# Ignore les fichiers de cache et de build de Hardhat et React
+artifacts/
+cache/
+dist/
+build/
+.hardhat/
+
+# Fichiers système inutiles
+.DS_Store
+Thumbs.db

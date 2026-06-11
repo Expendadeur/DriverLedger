@@ -1,0 +1,115 @@
+{
+    "common": {
+        "welcome": "Welcome to DriveLedger",
+        "tagline": "The Future of Digital Vehicle Assets",
+        "getStarted": "Get Started",
+        "explore": "Explore Marketplace",
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "dashboard": "Dashboard",
+        "marketplace": "Marketplace",
+        "booking": "Booking",
+        "admin": "Admin",
+        "scanner": "Scanner",
+        "logout": "Logout",
+        "connectWallet": "Connect Wallet",
+        "footer": "© 2026 DriveLedger. Encrypted by Blockchain.",
+        "filter": "Filter",
+        "premium": "Premium",
+        "price": "Price",
+        "stock": "in stock",
+        "buy": "Buy Now",
+        "book": "Book Now",
+        "confirm": "Confirm",
+        "cancel": "Cancel",
+        "cart": "Cart"
+    },
+    "marketplace": {
+        "title": "Elite Market",
+        "subtitle": "Premium parts and accessories, direct on-chain.",
+        "buySuccess": "Product purchased successfully!",
+        "buyError": "Purchase failed"
+    },
+    "booking": {
+        "title": "Experience Excellence",
+        "subtitle": "Reserve the most advanced vehicles on the planet, powered by decentralized trust.",
+        "dailyRate": "Daily Rate",
+        "topSpeed": "Top Speed",
+        "range": "Range",
+        "plate": "Plate Number",
+        "confirmBooking": "Confirm Booking",
+        "bookSuccess": "Vehicle booked successfully!",
+        "bookError": "Booking failed"
+    },
+    "dashboard": {
+        "title": "My Dashboard",
+        "role": "Role",
+        "orders": "Product Orders",
+        "reservations": "My Reservations",
+        "noOrders": "No orders found.",
+        "noReservations": "No active reservations.",
+        "connectWall": "Connect your wallet to view dashboard",
+        "viewQr": "View QR"
+    },
+    "admin": {
+        "sales": "Total Sales",
+        "bookings": "Active Bookings",
+        "products": "Products",
+        "clients": "Total Clients",
+        "manage": "Manage",
+        "add": "Add"
+    },
+    "nav": {
+        "home": "Home",
+        "services": "Services",
+        "vehicles": "Vehicles",
+        "contact": "Contact"
+    },
+    "landing": {
+        "web3Powered": "Web3 Powered Platform",
+        "heroTitle": "The Future of On-Chain Commerce",
+        "heroDescription": "DriveLedger combines direct blockchain e-commerce with decentralized vehicle booking. No middlemen, total transparency, 100% on-chain.",
+        "ctaSecondary": "Book a Vehicle",
+        "statsOnChain": "100% On-Chain",
+        "statsVerified": "Verified Transactions",
+        "featuresTitle": "Built for Excellence",
+        "featuresDesc": "Everything on DriveLedger is designed for transparency and security using state-of-the-art blockchain technology.",
+        "feature1Title": "Decentralized Shop",
+        "feature1Desc": "Buy products directly from smart contracts with automatic stock management and instant verification.",
+        "feature2Title": "Smart Booking",
+        "feature2Desc": "Rent premium vehicles with on-chain availability tracking and secure cryptocurrency payments.",
+        "feature3Title": "Global Access",
+        "feature3Desc": "A borderless platform accessible to anyone with a Web3 wallet, ensuring maximum reach and freedom.",
+        "featuredProducts": "Featured Products",
+        "availableVehicles": "Available Vehicles",
+        "viewAll": "View All"
+    },
+    "scanner": {
+        "title": "QR Validator",
+        "desc": "Scan customer QR codes to validate orders and bookings",
+        "scanning": "Scanning...",
+        "open": "Open Scanner",
+        "valid": "Transaction Valid",
+        "invalid": "Invalid QR",
+        "id": "ID",
+        "type": "Type",
+        "customer": "Customer"
+    },
+    "cart": {
+        "title": "Your Cart",
+        "empty": "Your cart is empty.",
+        "checkout": "Checkout",
+        "added": "Product added to cart!",
+        "remove": "Remove",
+        "items": "items",
+        "total": "Total",
+        "orderSuccess": "Order placed successfully!"
+    },
+    "checkout": {
+        "title": "Checkout",
+        "summary": "Please review your order details before secure payment.",
+        "orderItems": "Order Items",
+        "paymentDetails": "Payment Details",
+        "payNow": "Pay Now with MetaMask"
+    }
+}

@@ -1,0 +1,115 @@
+{
+    "common": {
+        "welcome": "Bienvenue sur DriveLedger",
+        "tagline": "L'avenir des actifs numériques de véhicules",
+        "getStarted": "Commencer",
+        "explore": "Explorer le Marché",
+        "loading": "Chargement...",
+        "error": "Une erreur est survenue",
+        "dashboard": "Tableau de Bord",
+        "marketplace": "Boutique",
+        "booking": "Réservation",
+        "admin": "Admin",
+        "scanner": "Scanner",
+        "logout": "Déconnexion",
+        "connectWallet": "Connecter mon Wallet",
+        "footer": "© 2026 DriveLedger. Sécurisé par la Blockchain.",
+        "filter": "Filtrer",
+        "premium": "Premium",
+        "price": "Prix",
+        "stock": "en stock",
+        "buy": "Acheter",
+        "book": "Réserver",
+        "confirm": "Confirmer",
+        "cancel": "Annuler",
+        "cart": "Panier"
+    },
+    "marketplace": {
+        "title": "Marché d'Elite",
+        "subtitle": "Pièces et accessoires premium, en direct sur la blockchain.",
+        "buySuccess": "Produit acheté avec succès !",
+        "buyError": "Échec de l'achat"
+    },
+    "booking": {
+        "title": "Vivez l'Excellence",
+        "subtitle": "Réservez les véhicules les plus avancés de la planète, propulsés par la confiance décentralisée.",
+        "dailyRate": "Tarif journalier",
+        "topSpeed": "Vitesse de pointe",
+        "range": "Autonomie",
+        "plate": "Plaque d'immatriculation",
+        "confirmBooking": "Confirmer la Réservation",
+        "bookSuccess": "Véhicule réservé avec succès !",
+        "bookError": "Échec de la réservation"
+    },
+    "dashboard": {
+        "title": "Mon Tableau de Bord",
+        "role": "Rôle",
+        "orders": "Mes Commandes",
+        "reservations": "Mes Réservations",
+        "noOrders": "Aucune commande trouvée.",
+        "noReservations": "Aucune réservation active.",
+        "connectWall": "Connectez votre wallet pour voir le dashboard",
+        "viewQr": "Voir le QR"
+    },
+    "admin": {
+        "sales": "Ventes Totales",
+        "bookings": "Réservations Actives",
+        "products": "Produits",
+        "clients": "Clients Totaux",
+        "manage": "Gérer",
+        "add": "Ajouter"
+    },
+    "nav": {
+        "home": "Accueil",
+        "services": "Services",
+        "vehicles": "Véhicules",
+        "contact": "Contact"
+    },
+    "landing": {
+        "web3Powered": "Plateforme Web3",
+        "heroTitle": "L'avenir du commerce On-Chain",
+        "heroDescription": "DriveLedger combine l'e-commerce direct sur blockchain avec la réservation décentralisée de véhicules. Sans intermédiaires, une transparence totale, 100% on-chain.",
+        "ctaSecondary": "Réserver un véhicule",
+        "statsOnChain": "100% On-Chain",
+        "statsVerified": "Transactions Vérifiées",
+        "featuresTitle": "Conçu pour l'Excellence",
+        "featuresDesc": "Tout sur DriveLedger est conçu pour la transparence et la sécurité en utilisant la technologie de pointe de la blockchain.",
+        "feature1Title": "Boutique Décentralisée",
+        "feature1Desc": "Achetez des produits directement via des smart contracts avec une gestion automatique des stocks et une vérification instantanée.",
+        "feature2Title": "Réservation Intelligente",
+        "feature2Desc": "Louez des véhicules premium avec un suivi de disponibilité on-chain et des paiements sécurisés en cryptomonnaie.",
+        "feature3Title": "Accès Global",
+        "feature3Desc": "Une plateforme sans frontières accessible à toute personne disposant d'un wallet Web3, garantissant une portée et une liberté maximales.",
+        "featuredProducts": "Produits à la Une",
+        "availableVehicles": "Véhicules Disponibles",
+        "viewAll": "Voir tout"
+    },
+    "scanner": {
+        "title": "Validateur QR",
+        "desc": "Scannez les codes QR des clients pour valider les commandes et réservations",
+        "scanning": "Scan en cours...",
+        "open": "Ouvrir le Scanner",
+        "valid": "Transaction Valide",
+        "invalid": "QR Invalide",
+        "id": "ID",
+        "type": "Type",
+        "customer": "Client"
+    },
+    "cart": {
+        "title": "Votre Panier",
+        "empty": "Votre panier est vide.",
+        "checkout": "Passer à la Caisse",
+        "added": "Produit ajouté au panier !",
+        "remove": "Retirer",
+        "items": "articles",
+        "total": "Total",
+        "orderSuccess": "Commande passée avec succès !"
+    },
+    "checkout": {
+        "title": "Vérification",
+        "summary": "Veuillez vérifier les détails de votre commande avant le paiement sécurisé.",
+        "orderItems": "Articles de la commande",
+        "paymentDetails": "Détails du paiement",
+        "payNow": "Payer maintenant avec MetaMask"
+    }
+}

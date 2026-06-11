@@ -1,0 +1,94 @@
+{
+    "common": {
+        "welcome": "Kaze kuri DriveLedger",
+        "tagline": "Kazoza k'ibinyabiziga mu buhinga bushasha",
+        "getStarted": "Tangura",
+        "explore": "Sura Isoko",
+        "loading": "Rindira...",
+        "error": "Hari ikibazo kishitse",
+        "dashboard": "Dashboard",
+        "marketplace": "Isoko",
+        "booking": "Kuronka imodoka",
+        "admin": "Admin",
+        "scanner": "Scanner",
+        "logout": "Gusohoka",
+        "connectWallet": "Huza Wallet yawe",
+        "footer": "© 2026 DriveLedger. Bikomekejwe na Blockchain.",
+        "filter": "Hitamo",
+        "premium": "Meza",
+        "price": "Igiciro",
+        "stock": "Zihari",
+        "buy": "Gura",
+        "book": "Kodesha",
+        "confirm": "Emeza",
+        "cancel": "Repa"
+    },
+    "marketplace": {
+        "title": "Isoko ryigihe",
+        "subtitle": "Ibikoresho byiza bivuye kuri blockchain.",
+        "buySuccess": "Gugura kwagenze neza!",
+        "buyError": "Gugura ntikwagenze neza"
+    },
+    "booking": {
+        "title": "Kuri bose",
+        "subtitle": "Kodesha imodoka nziza biciye mu budadadji bwizewe.",
+        "dailyRate": "Igiciro ku musi",
+        "topSpeed": "Umuvuduko",
+        "range": "Intera",
+        "plate": "Iplaque",
+        "confirmBooking": "Emeza ukodesha",
+        "bookSuccess": "Kodesha kwagenze neza!",
+        "bookError": "Kodesha ntikwagenze neza"
+    },
+    "dashboard": {
+        "title": "Ibimenyetso vyawe",
+        "role": "Ubwoko",
+        "orders": "Ivyo waguze",
+        "reservations": "Amamodoka wakodesheje",
+        "noOrders": "Nta vyo waguze bihari.",
+        "noReservations": "Nta modoka wakodesheje zihari.",
+        "connectWall": "Huza wallet kugira ubone dashboard yawe",
+        "viewQr": "Raba QR"
+    },
+    "admin": {
+        "sales": "Ayinjiye yose",
+        "bookings": "Amamodoka akodeshejwe",
+        "products": "Ibikoresho",
+        "clients": "Abakiriya bose",
+        "manage": "Genze",
+        "add": "Ongerako"
+    },
+    "nav": {
+        "home": "Ahabanza",
+        "services": "Ubuhingane",
+        "vehicles": "Ibinyabiziga",
+        "contact": "Twandikire"
+    },
+    "landing": {
+        "web3Powered": "Ubuhinga bwa Web3",
+        "heroTitle": "Kazoza k'ubudandaji kuri Blockchain",
+        "heroDescription": "DriveLedger igufasha kugenzura no kugurisha ibinyabiziga mu buryo bworoshe kandi buzwi kuri blockchain.",
+        "ctaSecondary": "Raba imodoka",
+        "statsOnChain": "100% Kuri Blockchain",
+        "statsVerified": "Bigenzurwa neza",
+        "featuresTitle": "Icizere n'Ubuhinga",
+        "featuresDesc": "DriveLedger yubatswe mu buryo bwizewe kandi buterambereye ikoresheje ubuhinga bwa blockchain.",
+        "feature1Title": "Isoko ryigenga",
+        "feature1Desc": "Gura ivyo ukeneye mu buryo bworoshe kandi buzwi neza biciye kuri smart contracts.",
+        "feature2Title": "Kuronka imodoka",
+        "feature2Desc": "Kodesha imodoka nziza mu buryo bwizewe kandi wishure mu buryo bwa crypto.",
+        "feature3Title": "Isoko kuri bose",
+        "feature3Desc": "Ubuhinga bwa bose bufasha uwo ari we wese afise wallet ya Web3 gukoresha iyi plateforme."
+    },
+    "scanner": {
+        "title": "Guhakwa QR",
+        "desc": "Sura QR code y'umukiriya kugira wemeze ivyo yaguze",
+        "scanning": "Turiko turasura...",
+        "open": "Yugurura Scanner",
+        "valid": "Transaction yemejwe",
+        "invalid": "QR ntiyemewe",
+        "id": "ID",
+        "type": "Ubwoko",
+        "customer": "Umukiriya"
+    }
+}
