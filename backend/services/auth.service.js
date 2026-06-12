@@ -17,7 +17,7 @@ const verifySignature = (address, signature, nonce) => {
 const signToken = (user) => {
     return jwt.sign(
         { id: user.id, address: user.address, role: user.role },
-        process.env.JWT_SECRET,
+        process.env.JWT_SECRET || 'secret',
         { expiresIn: '24h' }
     );
 };

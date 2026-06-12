@@ -116,32 +116,42 @@ app.post('/api/auth/nonce', (req, res) => {
 });
 
 app.post('/api/auth/login', async (req, res) => {
-    const { address, signature, nonce } = req.body;
-    if (!verifySignature(address, signature, nonce)) {
-        return res.status(401).json({ error: "Invalid signature" });
-    }
-    let role = "CLIENT";
     try {
-        const [isAdminVal, isEmployeeVal, isDeactivatedVal] = await Promise.all([
-            accessControlContract.isAdmin(address),
-            accessControlContract.isEmployee(address),
-            accessControlContract.isDeactivated(address)
-        ]);
-        if (isAdminVal) role = "ADMIN";
-        else if (isEmployeeVal) role = "EMPLOYEE";
-        const user = await prisma.user.upsert({
-            where: { address: address.toLowerCase() },
-            update: { role, isDeactivated: isDeactivatedVal },
-            create: { address: address.toLowerCase(), role, isDeactivated: isDeactivatedVal }
-        });
-        const token = signToken(user);
-        res.json({ token, user });
-    } catch (err) {
-        console.error("On-chain sync failed:", err.message);
-        let user = await prisma.user.findUnique({ where: { address: address.toLowerCase() } });
-        if (!user) user = await prisma.user.create({ data: { address: address.toLowerCase(), role: "CLIENT" } });
-        const token = signToken(user);
-        res.json({ token, user });
+        const { address, signature, nonce } = req.body;
+        if (!verifySignature(address, signature, nonce)) {
+            return res.status(401).json({ error: "Invalid signature" });
+        }
+        let role = "CLIENT";
+        try {
+            const [isAdminVal, isEmployeeVal, isDeactivatedVal] = await Promise.all([
+                accessControlContract.isAdmin(address),
+                accessControlContract.isEmployee(address),
+                accessControlContract.isDeactivated(address)
+            ]);
+            if (isAdminVal) role = "ADMIN";
+            else if (isEmployeeVal) role = "EMPLOYEE";
+            const user = await prisma.user.upsert({
+                where: { address: address.toLowerCase() },
+                update: { role, isDeactivated: isDeactivatedVal },
+                create: { address: address.toLowerCase(), role, isDeactivated: isDeactivatedVal }
+            });
+            const token = signToken(user);
+            res.json({ token, user });
+        } catch (err) {
+            console.error("On-chain sync failed:", err.message);
+            try {
+                let user = await prisma.user.findUnique({ where: { address: address.toLowerCase() } });
+                if (!user) user = await prisma.user.create({ data: { address: address.toLowerCase(), role: "CLIENT" } });
+                const token = signToken(user);
+                res.json({ token, user });
+            } catch (fallbackErr) {
+                console.error("Database fallback login failed:", fallbackErr.message);
+                res.status(500).json({ error: "Database fallback login failed: " + fallbackErr.message });
+            }
+        }
+    } catch (routeErr) {
+        console.error("Login route failed:", routeErr.message);
+        res.status(500).json({ error: "Login route failed: " + routeErr.message });
     }
 });
 
