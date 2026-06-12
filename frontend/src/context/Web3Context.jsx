@@ -68,7 +68,7 @@ export const Web3Provider = ({ children }) => {
         try {
             await window.ethereum.request({
                 method: 'wallet_switchEthereumChain',
-                params: [{ chainId: '0x7A69' }], // 31337 in hex
+                params: [{ chainId: '0xaa36a7' }], // 11155111 in hex (Sepolia)
             });
         } catch (switchError) {
             // This error code indicates that the chain has not been added to MetaMask.
@@ -77,10 +77,11 @@ export const Web3Provider = ({ children }) => {
                     await window.ethereum.request({
                         method: 'wallet_addEthereumChain',
                         params: [{
-                            chainId: '0x7A69',
-                            chainName: 'Hardhat Local',
-                            nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
-                            rpcUrls: ['http://127.0.0.1:8545'],
+                            chainId: '0xaa36a7',
+                            chainName: 'Sepolia Test Network',
+                            nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
+                            rpcUrls: ['https://ethereum-sepolia.core.chainstack.com/91bdf46e33094e4e848bb12abca704af'],
+                            blockExplorerUrls: ['https://sepolia.etherscan.io'],
                         }],
                     });
                 } catch (addError) {
@@ -132,8 +133,8 @@ export const Web3Provider = ({ children }) => {
                 const network = await _provider.getNetwork();
                 setChainId(network.chainId);
 
-                if (network.chainId !== 31337n) {
-                    console.warn("ATTENTION: MetaMask est sur le mauvais réseau! Chain ID attendu: 31337, Actuel:", network.chainId.toString());
+                if (network.chainId !== 11155111n) {
+                    console.warn("ATTENTION: MetaMask est sur le mauvais réseau! Chain ID attendu: 11155111 (Sepolia), Actuel:", network.chainId.toString());
                 }
 
                 setProvider(_provider);

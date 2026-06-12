@@ -520,14 +520,14 @@ const AdminDashboard = () => {
                         exit={{ opacity: 0, x: -20 }}
                         transition={{ duration: 0.2 }}
                     >
-                        {chainId !== 31337n && (
+                        {chainId !== 11155111n && (
                             <div className="alert alert-warning mb-6 flex items-center justify-between gap-4" style={{ background: '#fffbeb', border: '1px solid #fcd34d', padding: '1rem', borderRadius: '0.5rem', color: '#92400e', marginBottom: '1.5rem' }}>
                                 <div className="flex items-center gap-2">
                                     <AlertCircle size={20} />
-                                    <span><strong>Attention:</strong> MetaMask n'est pas connecté au réseau Hardhat (Chain ID 31337). Vos transactions vont échouer.</span>
+                                    <span><strong>Attention:</strong> MetaMask n'est pas connecté au réseau Sepolia (Chain ID 11155111). Vos transactions vont échouer.</span>
                                 </div>
                                 <button onClick={switchNetwork} className="btn-primary" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}>
-                                    Basculer sur Hardhat
+                                    Basculer sur Sepolia
                                 </button>
                             </div>
                         )}
